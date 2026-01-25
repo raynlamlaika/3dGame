@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  cub3d:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cub3d:latest
+    container_name: cub3d_game
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - .:/app
+    network_mode: host
+    stdin_open: true
+    tty: true
+    command: ["./cub3d", "maps/map.cub"]
+    
+  cub3d-bonus:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cub3d:latest
+    container_name: cub3d_bonus_game
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - .:/app
+    network_mode: host
+    stdin_open: true
+    tty: true
+    command: ["./cub3d_bonus", "maps/map.cub"]

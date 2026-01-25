@@ -1,0 +1,29 @@
+# Compiled object files
+*.o
+
+# Executables
+cub3d
+cub3d_bonus
+
+# Git files
+.git/
+.gitignore
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentation
+README-DOCKER.md
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+*.a
+*.so
+*.dylib
