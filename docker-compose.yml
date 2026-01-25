@@ -11,6 +11,7 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
     network_mode: host
+    # Privileged mode is required for X11 access in some environments
     privileged: true
     stdin_open: true
     tty: true

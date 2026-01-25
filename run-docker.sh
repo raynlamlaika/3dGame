@@ -31,7 +31,6 @@ print_info "Detected OS: $OS"
 # Default values
 MAP_FILE="maps/map.cub"
 USE_BONUS=false
-DOCKER_CMD="docker-compose"
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do

@@ -40,33 +40,6 @@ void	move_player(t_game *game, double dx, double dy)
 		(1) && (game->player.y = mov.new_y, game->player.x = mov.new_x);
 }
 
-int	bottomshelper(int keycode, t_game *game, double dx, double dy)
-{
-	(void)dx;
-	(void)dy;
-	if (keycode == KEY_W)
-	{
-		dx = cos(game->angle);
-		dy = sin(game->angle);
-	}
-	if (keycode == KEY_S)
-	{
-		dx = -cos(game->angle);
-		dy = -sin(game->angle);
-	}
-	if (keycode == KEY_D)
-		(1) && (dx = -sin(game->angle), \
-		dy = cos(game->angle));
-	if (keycode == KEY_A)
-		(1) && (dx = sin(game->angle), \
-		dy = -cos(game->angle));
-	if (keycode == 49)
-		game->frame = 1;
-	if (keycode == 53)
-		exit(0);
-	return (1);
-}
-
 void	helper(t_game *game)
 {
 	if (game->angle < 0)
