@@ -8,6 +8,13 @@ This document provides instructions for running the Cub3D game using Docker on d
 - Docker Compose (usually comes with Docker Desktop)
 - X11 server for GUI display (platform-specific, see below)
 
+## Security Note
+
+⚠️ **For Development/Testing Only**: This Docker setup uses privileged mode and xhost permissions for simplicity. These settings grant elevated privileges and should only be used in trusted development environments. For production deployments, consider:
+- Using more restrictive Docker capabilities instead of privileged mode
+- Implementing proper X11 authentication mechanisms
+- Running in isolated networks
+
 ## Platform-Specific Setup
 
 ### Linux Users
