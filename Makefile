@@ -19,7 +19,21 @@ SRCS_B = bonus/check_args_bonus.c bonus/config_parser_bonus.c bonus/ft_split_bon
 OBJS = $(SRCS:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
 
-MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
+# Detect operating system
+UNAME_S := $(shell uname -s)
+
+# Set MLX flags based on OS
+ifeq ($(UNAME_S),Darwin)
+	# macOS
+	MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
+else
+	# Linux
+	MLX_FLAG = -lmlx -lXext -lX11 -lm -lbsd
+	MLX_DIR = /usr/local/lib
+	ifneq ($(wildcard $(MLX_DIR)/libmlx.a),)
+		MLX_FLAG += -L$(MLX_DIR)
+	endif
+endif
 
 all: $(NAME)
 

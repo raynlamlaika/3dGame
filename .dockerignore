@@ -1,0 +1,29 @@
+# Object files
+*.o
+
+# Compiled binaries
+cub3d
+cub3d_bonus
+
+# Git directory
+.git/
+.gitignore
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+
+# Documentation (will be copied separately if needed)
+README.md
