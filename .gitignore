@@ -1,0 +1,19 @@
+# Object files
+*.o
+
+# Compiled binaries
+cub3d
+cub3d_bonus
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
