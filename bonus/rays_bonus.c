@@ -104,7 +104,6 @@ int	loophandeler(t_casting	*holder, t_game *game)
 
 void	the_3dview(t_game *game)
 {
-	int			i_loop;
 	t_casting	*holder;
 
 	holder = ft_malloc(sizeof(t_casting), 1);
@@ -114,6 +113,5 @@ void	the_3dview(t_game *game)
 	holder->side = 0;
 	holder->side_dist_x = 0;
 	holder->side_dist_y = 0;
-	i_loop = 0;
 	loophandeler(holder, game);
 }

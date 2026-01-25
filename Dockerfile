@@ -16,10 +16,11 @@ RUN apt-get update && apt-get install -y \
     libxinerama-dev \
     libxcursor-dev \
     git \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone and build MiniLibX for Linux
-RUN git clone https://github.com/42Paris/minilibx-linux.git /tmp/minilibx-linux && \
+RUN GIT_SSL_NO_VERIFY=1 git clone https://github.com/42Paris/minilibx-linux.git /tmp/minilibx-linux && \
     cd /tmp/minilibx-linux && \
     make && \
     cp libmlx.a /usr/local/lib/ && \

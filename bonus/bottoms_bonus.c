@@ -42,6 +42,8 @@ void	move_player(t_game *game, double dx, double dy)
 
 int	bottomshelper(int keycode, t_game *game, double dx, double dy)
 {
+	(void)dx;
+	(void)dy;
 	if (keycode == KEY_W)
 	{
 		dx = cos(game->angle);
