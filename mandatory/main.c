@@ -12,6 +12,41 @@
 
 #include "cub.h"
 
+static int	is_texture_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r'
+		|| c == '\v' || c == '\f');
+}
+
+static void	trim_texture_path(char *file)
+{
+	size_t	len;
+	size_t	start;
+	size_t	i;
+
+	if (!file)
+		return ;
+	start = 0;
+	while (file[start] && (file[start] == ' ' || file[start] == '\t'))
+		start++;
+	if (start > 0)
+	{
+		i = 0;
+		while (file[start + i])
+		{
+			file[i] = file[start + i];
+			i++;
+		}
+		file[i] = '\0';
+	}
+	len = ft_strlen(file);
+	while (len > 0 && is_texture_space(file[len - 1]))
+	{
+		file[len - 1] = '\0';
+		len--;
+	}
+}
+
 void	is_valid_texture(t_game *game)
 {
 	if (game->no != 1 || game->so != 1 || game->we != 1 \
@@ -28,17 +63,19 @@ t_txtu	init_txtu(t_game *game, char *file)
 
 	if (file == NULL)
 		return (printf("passing in NULL file \n"), exit(1), txtu);
-	file[ft_strlen(file) - 1] = '\0';
+	trim_texture_path(file);
+	if (*file == '\0')
+		return (printf("Empty texture path\n"), exit(1), txtu);
 	if (access(file, F_OK))
 	{
 		printf("wrong access: |%s|\n", file);
 		exit(1);
 	}
 	txtu.txture_p = mlx_xpm_file_to_image(\
-	game->helper->addr, file, &txtu.width, &txtu.height);
+	game->helper->mlx, file, &txtu.width, &txtu.height);
 	if (!txtu.txture_p)
 	{
-		printf("texttttuer error \n");
+		printf("textuer error \n");
 		exit(1);
 	}
 	txtu.data_add = mlx_get_data_addr \

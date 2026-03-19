@@ -52,7 +52,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 int	render_map(t_game *game)
 {
 	mlx_destroy_image(game->helper->mlx, game->helper->img);
-	mlx_clear_window(game->helper->addr, game->helper->win);
+	mlx_clear_window(game->helper->mlx, game->helper->win);
 	game->helper->img = mlx_new_image \
 	(game->helper->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!game->helper->img)

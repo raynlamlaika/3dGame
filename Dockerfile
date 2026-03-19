@@ -34,10 +34,10 @@ WORKDIR /app
 COPY . /app
 
 # Build the game
-RUN make all && make bonus
+RUN make bonus
 
 # Set DISPLAY environment variable (can be overridden at runtime)
 ENV DISPLAY=:0
 
 # Default command
-CMD ["./cub3d", "maps/map.cub"]
+CMD ["./cub3d_bonus", "maps/map.cub"]

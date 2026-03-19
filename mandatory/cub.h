@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <limits.h>
-# include "mlx.h"
+# include "/home/lamlaika/inception/cub3d/cc/mlx/mlx.h"
 # include <math.h>
 
 # ifndef BUFFER_SIZE

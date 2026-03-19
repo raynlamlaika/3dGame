@@ -4,6 +4,8 @@ NAME = cub3d
 NAME_B = cub3d_bonus
 HEADER = mandatory/cub.h
 HEADER_B = bonus/cub_bonus.h
+MLX_DIR = mlx
+MLX_LIB = $(MLX_DIR)/libmlx.a
 
 SRCS = mandatory/check_args.c mandatory/config_parser.c mandatory/ft_split.c mandatory/get_next_line.c \
        mandatory/init.c mandatory/main.c mandatory/map_parser.c mandatory/parse_map.c mandatory/parser.c mandatory/utils_2.c mandatory/utils.c \
@@ -25,25 +27,24 @@ UNAME_S := $(shell uname -s)
 # Set MLX flags based on OS
 ifeq ($(UNAME_S),Darwin)
 	# macOS
-	MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
+	MLX_FLAG = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 else
 	# Linux
-	MLX_FLAG = -lmlx -lXext -lX11 -lm -lbsd
-	MLX_DIR = /usr/local/lib
-	ifneq ($(wildcard $(MLX_DIR)/libmlx.a),)
-		MLX_FLAG += -L$(MLX_DIR)
-	endif
+	MLX_FLAG = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 endif
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAG) -o $(NAME)
 
 bonus: $(NAME_B)
 
-$(NAME_B): $(OBJS_B)
+$(NAME_B): $(OBJS_B) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJS_B) $(MLX_FLAG) -o $(NAME_B)
+
+$(MLX_LIB):
+	$(MAKE) -C $(MLX_DIR)
 
 bonus/%.o: bonus/%.c $(HEADER_B)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -54,6 +55,7 @@ bonus/%.o: bonus/%.c $(HEADER_B)
 
 clean:
 	rm -f $(OBJS) $(OBJS_B)
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME) $(NAME_B)
